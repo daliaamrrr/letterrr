@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Letter for You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #fff5f7;
+            --envelope-color: #f3ead7;
+            --flap-color: #e6dcc5;
+            --wax-seal: #f4b4be;
+            --text-color: #5a4a42;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--bg-color);
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); 
+            overflow: hidden;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: var(--envelope-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 110px solid var(--flap-color);
+            transform-origin: top;
+            transition: transform 0.4s ease 0.2s, z-index 0.1s 0.4s;
+            z-index: 3;
+        }
+
+        .wax-seal {
+            position: absolute;
+            top: 90px;
+            left: 130px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--wax-seal);
+            border-radius: 50%;
+            z-index: 4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: opacity 0.3s ease;
+        }
+
+        .wax-seal::after {
+            content: "🎀";
+            font-size: 20px;
+        }
+
+        .letter {
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+            width: 280px;
+            height: 180px;
+            background-color: #fffcf2;
+            padding: 20px;
+            box-sizing: border-box;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.6s ease 0.5s, height 0.6s ease 0.5s;
+            z-index: 2;
+            overflow-y: auto;
+            color: var(--text-color);
+        }
+
+        .container.open .flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .container.open .letter {
+            transform: translateY(-120px) scale(1.1);
+            height: 350px;
+            z-index: 5;
+        }
+
+        .container.open .wax-seal {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .instruction {
+            position: absolute;
+            bottom: -50px;
+            width: 100%;
+            text-align: center;
+            color: #d8a7b1;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="envelopeContainer">
+        <div class="envelope-wrapper">
+            <div class="flap"></div>
+            <div class="wax-seal"></div>
+            <div class="letter">
+                <p style="font-weight: 600; font-size: 1.2rem; margin-top: 0;">to my love,</p>
+                <p>
+                    i don't know how to put all of this into words, and no matter how much i try it'll never capture how i truly feel. you mean the world to me. i love the way you make me laugh and smile no matter what, i love how your humor is the same as mine. you make me feel so safe, you literally feel like home.
+                    <br><br>
+                    it’s in the way you just know when i’m overwhelmed without me having to say a single word, and how you always know exactly what to say to ground me. i’m so grateful for the little things—the way you look at me, the way you listen, and the way you make the rest of the world just fade away when we’re together. i find myself thinking about you at the most random times and just smiling, because i honestly can't believe i found someone who gets me the way you do.
+                    <br><br>
+                    thank you for being my person, my man, and my peace. i look forward to every tomorrow with you, because as long as i have you by my side, i know i’m okay. i love you more than i could ever put into a thousand letters.
+                </p>
+            </div>
+        </div>
+        <div class="instruction">Tap to open</div>
+    </div>
+
+    <script>
+        const container = document.getElementById('envelopeContainer');
+        container.addEventListener('click', () => {
+            container.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
